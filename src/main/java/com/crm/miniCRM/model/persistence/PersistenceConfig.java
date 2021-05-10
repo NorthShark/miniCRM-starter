@@ -14,8 +14,8 @@ public class PersistenceConfig {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
         dataSource.setUrl("jdbc:mysql://localhost:3306/miniCRM?createDatabaseIfNotExist=true&useUnicode=yes&characterEncoding=UTF-8");
-        dataSource.setUsername("Mathy");
-        dataSource.setPassword("Npngnmtj0");
+        dataSource.setUsername("root");
+        dataSource.setPassword("Blueviper25051982");
         return dataSource;
     }
 }

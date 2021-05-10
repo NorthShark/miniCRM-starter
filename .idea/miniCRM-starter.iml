@@ -14,7 +14,10 @@
       <configuration>
         <setting name="validation-enabled" value="true" />
         <setting name="provider-name" value="Hibernate" />
-        <datasource-mapping />
+        <datasource-mapping>
+          <factory-entry name="entityManagerFactory" value="98e27bf9-18d9-4675-9551-23ff80ebae69" />
+          <factory-entry name="miniCRM-starter" />
+        </datasource-mapping>
         <naming-strategy-map />
       </configuration>
     </facet>
