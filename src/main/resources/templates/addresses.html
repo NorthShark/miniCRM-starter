@@ -19,8 +19,8 @@
         <th>City</th>
         <th>Country</th>
         <th>Type</th>
-
-
+        <th>Edit</th>
+        <th>Delete</th>
     </tr>
     </thead>
     <tbody>
@@ -30,15 +30,18 @@
         <td th:text="${address.number}"></td>
         <td th:text="${address.box}"></td>
         <td th:text="${address.zip}"></td>
-        <td th:text="${address.id}"></td>
-        <td th:text="${address.id}"></td>
-
+        <td th:text="${address.city}"></td>
+        <td th:text="${address.country}"></td>
+        <td th:text="${address.type}"></td>
+        <td><button>edit</button></td>
+        <td><button>delete</button></td>
     </tr>
     </tbody>
 </table>
 
 <p>
     <a th:href="@{/addresses/new}" class="btn btn-link">New address</a>
+    <button>save changes</button>
 </p>
 </body>
 </html>
