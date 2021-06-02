@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-@RequestMapping(value = "/communities")
+@RequestMapping(value = "/members")
 public class MemberController {
     private MemberRepository memberService;
 

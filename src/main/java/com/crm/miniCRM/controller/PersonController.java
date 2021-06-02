@@ -49,8 +49,6 @@ public class PersonController {
         return "redirect:/persons";
     }
 
-    //
-
     protected PersonDto convertToDto(Person entity) {
         PersonDto dto = new PersonDto(entity.getId(), entity.getFirstName(), entity.getLastName(), entity.getBirthDay().toString());
          return dto;
