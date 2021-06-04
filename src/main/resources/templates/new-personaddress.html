@@ -1,10 +1,41 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-        "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Title</title>
+    <title>Add person's address</title>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
 <body>
+<div class="container ml-3 mt-4">
 
+    <h2>New person's address</h2>
+
+    <form th:action="@{/personaddresses}" th:object="${personAddress}" method="post"
+          class="mt-4">
+        <div class="form-group row">
+            <label for="email" col-form-label col-sm-2>E-mail</label>
+            <input type="text" th:field="*{email}" id="email"
+                   class="form-control col-sm-6 ml-2" placeholder="name@mail.com" />
+        </div>
+        <div class="form-group row">
+            <label for="phone" col-form-label col-sm-2>Phone</label>
+            <input type="text" th:field="*{phone}" id="phone"
+                   class="form-control col-sm-6 ml-2" placeholder="01234567" />
+        </div>
+        <div class="form-group row">
+            <label for="mobile" col-form-label col-sm-2>Mobile</label>
+            <input type="text" th:field="*{mobile}" id="mobile"
+                   class="form-control col-sm-6 ml-2" placeholder="09876543" />
+        </div>
+        <div class="form-group row">
+            <label for="type" col-form-label col-sm-2>Type</label>
+            <input type="text" th:field="*{type}" id="type"
+                   class="form-control col-sm-6 ml-2" placeholder="PRIV (private) of PROF (work)" />
+        </div>
+        <input type="submit" value="Save person's address"
+               class="btn btn-primary ml-2" />
+
+    </form>
+</div>
 </body>
 </html>
