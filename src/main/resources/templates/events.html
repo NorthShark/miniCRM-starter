@@ -1,10 +1,30 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-        "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Title</title>
+    <title>Events</title>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
 <body>
+<table class="table col-md-6 ml-3">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Description</th>
+        <th>Date</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="event : ${events}">
+        <td th:text="${event.id}"></td>
+        <td th:text="${event.description}"></td>
+        <td th:text="${event.date}"></td>
+    </tr>
+    </tbody>
+</table>
 
+<p>
+    <a th:href="@{/events/new}" class="btn btn-link">New event</a>
+</p>
 </body>
 </html>

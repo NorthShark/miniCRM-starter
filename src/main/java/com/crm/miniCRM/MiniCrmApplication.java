@@ -24,7 +24,8 @@ public class MiniCrmApplication {
     }
 
     @Bean
-    public CommandLineRunner demoMiniCRM(PersonRepository personRepository,
+    public CommandLineRunner demoMiniCRM(PersonRepository
+                                                     personRepository,
                                          AddressRepository addressRepository,
                                          PersonAddressRepository personAddressRepository,
                                          CommunityRepository communityRepository,
