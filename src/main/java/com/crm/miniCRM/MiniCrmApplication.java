@@ -2,6 +2,7 @@ package com.crm.miniCRM;
 
 //https://spring.io/guides/gs/accessing-data-jpa/
 
+import com.crm.miniCRM.controller.HomeController;
 import com.crm.miniCRM.model.*;
 import com.crm.miniCRM.model.persistence.*;
 import org.slf4j.Logger;
@@ -10,6 +11,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+
 
 import java.time.LocalDate;
 import java.util.Optional;
