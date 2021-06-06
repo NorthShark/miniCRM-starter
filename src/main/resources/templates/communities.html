@@ -13,6 +13,8 @@
 			<tr>
 				<th>Id</th>
 				<th>Description</th>
+				<th>Members</th>
+				<th>Add Members</th>
 
 			</tr>
 		</thead>
@@ -20,12 +22,14 @@
 			<tr th:each="community : ${communities}">
 				<td th:text="${community.id}"></td>
 				<td th:text="${community.description}"></td>
+				<td><a th:href="@{/members}" class="btn btn-link">Show</a></td>
+				<td><a th:href="@{/members}" class="btn btn-link">Add</a></td>
 			</tr>
 		</tbody>
 	</table>
 
 	<p>
-		<a th:href="@{/communities/new}" class="btn btn-link">New community</a>
+		<a style = "margin-left: 10px;" th:href="@{/communities/new}" class="btn btn-primary">New community</a>
 	</p>
 </body>
 </html>

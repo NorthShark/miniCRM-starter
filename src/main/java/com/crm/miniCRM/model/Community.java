@@ -12,10 +12,8 @@ public class Community {
 
     @ManyToMany(mappedBy = "member")
     private List<Person> member;
-
     private String description;
-
-    public Community(){}
+    public Community (){}
 
     public Community(String description) {
         this.description = description;
@@ -24,18 +22,17 @@ public class Community {
     public Long getID() {
         return ID;
     }
-
     public void setID(Long ID) {
         this.ID = ID;
     }
-
     public String getDescription() {
         return description;
     }
-
     public void setDescription(String description) {
         this.description = description;
     }
+    public List getMembers(){return member;}
+    public void setMember(){this.member = member;}
 
     @Override
     public String toString() {

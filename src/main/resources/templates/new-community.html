@@ -13,13 +13,14 @@
     <form th:action="@{/communities}" th:object="${community}" method="post"
           class="mt-4">
         <div class="form-group row">
-            <label for="description" col-form-label col-sm-2>Description</label>
+            <label for="description" col-form-label col-sm-2>Description: </label>
             <input type="text" th:field="*{description}" id="description"
-                   class="form-control col-sm-6 ml-2" placeholder="Description" />
+                   title="Community won't have any members yet"
+                   class="form-control col-sm-6 ml-2" placeholder="Description"/>
         </div>
-        <div><input type="submit" value="Save community"
-                    class="btn btn-primary ml-2" />
-            <a th:href="@{/members}" class="btn btn-link">Add members</a></div>
+        <div>
+            <input type="submit" value="Save community" class="btn btn-primary ml-2"/>
+        </div>
 
     </form>
 </div>

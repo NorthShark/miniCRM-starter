@@ -2,6 +2,7 @@ package com.crm.miniCRM.controller;
 
 import com.crm.miniCRM.dto.CommunityDto;
 import com.crm.miniCRM.model.Community;
+import com.crm.miniCRM.model.Member;
 import com.crm.miniCRM.model.persistence.CommunityRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,7 +21,6 @@ import java.util.List;
 public class CommunityController {
 
     private CommunityRepository communityService;
-
     public CommunityController(CommunityRepository communityService) {
         this.communityService = communityService;
     }
@@ -33,17 +33,23 @@ public class CommunityController {
         model.addAttribute("communities", CommunityDtos);
         return "communities";
     }
+   @GetMapping("/communitymembers")
+        public String getMembersOfCommunity(Model model){
+        Iterable<Member> membersOfCommunity = communityService.findAllByCommunityID();
+        model.addAttribute("communitymembers",)
+        return"communitymembers";
+   }
 
     @GetMapping("/new")
     public String newcommunity(Model model) {
         model.addAttribute("community", new CommunityDto());
+
         return "new-community";
     }
 
     @PostMapping
     public String addcommunity(CommunityDto community) {
         communityService.save(convertToEntity(community));
-
         return "redirect:/communities";
     }
 

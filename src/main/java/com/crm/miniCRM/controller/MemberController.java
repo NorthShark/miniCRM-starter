@@ -6,6 +6,7 @@ import com.crm.miniCRM.model.Member;
 import com.crm.miniCRM.model.Person;
 import com.crm.miniCRM.model.persistence.MemberRepository;
 import com.crm.miniCRM.model.persistence.PersonRepository;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -22,7 +23,7 @@ import java.util.List;
 public class MemberController {
     private MemberRepository memberService;
 
-    public MemberController(MemberRepository memberService) {
+    public MemberController(@Qualifier("MemberRepo") MemberRepository memberService) {
         this.memberService = memberService;
     }
 
