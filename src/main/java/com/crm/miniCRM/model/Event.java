@@ -1,5 +1,7 @@
 package com.crm.miniCRM.model;
 
+import com.sun.istack.NotNull;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 

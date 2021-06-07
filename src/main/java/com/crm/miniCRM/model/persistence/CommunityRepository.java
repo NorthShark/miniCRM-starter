@@ -14,6 +14,6 @@ public interface CommunityRepository extends CrudRepository<Community, Long> {
     Community findById(long id);
 
     @Query
-    (value = "SELECT * FROM Member m join Community c on m.community_id == c.id ",nativeQuery = true)
-    List<Member> findAllByCommunityID();
+    (value = "SELECT distinct first_name,last_name from person join member m on person.id = m.person_id join community c on c.id = m.community_id where c.id = ${id}",nativeQuery = true)
+    List<Member> findAllByCommunityID(long id);
 }
