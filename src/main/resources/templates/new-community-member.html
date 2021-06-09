@@ -28,10 +28,10 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="Object : ${membernames}">
-                    <td th:text=""></td>
-                    <td th:text=""></td>
-                    <td th:text=""></td>
+                <tr th:each="membername : ${namesofmembers}">
+                    <td th:text="${membername[2]}"></td>
+                    <td th:text="${membername[1]}"></td>
+                    <td th:text="${membername[0]}"></td>
                 </tr>
                 </tbody>
             </table>

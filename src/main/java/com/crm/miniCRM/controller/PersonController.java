@@ -51,7 +51,7 @@ public class PersonController {
 
         model.addAttribute("persons", personDtos);
         model.addAttribute("commie", community);
-        model.addAttribute("membernames", membernames);
+        model.addAttribute("namesofmembers", membernames);
         return "new-community-member";
     }
     @GetMapping("/new")

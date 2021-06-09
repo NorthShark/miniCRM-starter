@@ -21,7 +21,7 @@ public class MemberRepositoryQuery implements MemberRepository {
     }
 
     @Override
-    public List<Object> ShowMemberName(Long id) {
+    public List<Object> findMemberName(Long id) {
         return null;
     }
 

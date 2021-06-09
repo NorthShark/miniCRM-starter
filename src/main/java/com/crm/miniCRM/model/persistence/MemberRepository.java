@@ -13,5 +13,5 @@ public interface MemberRepository extends CrudRepository<Member, MemberID> {
     Optional<Member> findById(MemberID id);
 
     @Query(value="select p.last_name, p.first_name, m.community_id from member m join person p on m.person_id = p.id join community c on c.id = m.community_id where c.id = ${id}", nativeQuery = true)
-    List<Object> ShowMemberName(Long id);
+    List<Object> findMemberName(Long id);
 }
