@@ -1,11 +1,8 @@
 package com.crm.miniCRM.controller;
 
 import com.crm.miniCRM.dto.MemberDto;
-import com.crm.miniCRM.dto.PersonDto;
 import com.crm.miniCRM.model.Member;
-import com.crm.miniCRM.model.Person;
 import com.crm.miniCRM.model.persistence.MemberRepository;
-import com.crm.miniCRM.model.persistence.PersonRepository;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,7 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,7 +35,7 @@ public class MemberController {
     @GetMapping("/new")
     public String newmember(Model model) {
         model.addAttribute("member", new MemberDto());
-        return "new-member";
+        return "new-community-member";
     }
 
     @PostMapping

@@ -7,12 +7,15 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import com.crm.miniCRM.dto.PersonDto;
+import com.crm.miniCRM.model.Community;
 import com.crm.miniCRM.model.Person;
+import com.crm.miniCRM.model.persistence.CommunityRepository;
 import com.crm.miniCRM.model.persistence.PersonRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -22,9 +25,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class PersonController {
 
     private PersonRepository personService;
-
-    public PersonController(PersonRepository personService) {
+    private CommunityRepository communityService;
+private Community community;
+    public PersonController(PersonRepository personService, CommunityRepository communityService) {
         this.personService = personService;
+        this.communityService = communityService;
     }
 
     @GetMapping
@@ -35,7 +40,15 @@ public class PersonController {
         model.addAttribute("persons", personDtos);
         return "persons";
     }
-
+    @GetMapping("/addcommunitymember/{id}")
+    public String getmemberpersons(@PathVariable("id") long id, Model model) {
+        community = communityService.findById(id);
+        Iterable<Person> persons = personService.findAll();
+        List<PersonDto> personDtos = new ArrayList<>();
+        persons.forEach(p -> personDtos.add(convertToNewMemberDto(p)));
+        model.addAttribute("persons", personDtos);
+        return "new-community-member";
+    }
     @GetMapping("/new")
     public String newperson(Model model) {
         model.addAttribute("person", new PersonDto());
@@ -53,7 +66,10 @@ public class PersonController {
         PersonDto dto = new PersonDto(entity.getId(), entity.getFirstName(), entity.getLastName(), entity.getBirthDay().toString());
          return dto;
     }
-
+    protected PersonDto convertToNewMemberDto(Person entity) {
+        PersonDto dto = new PersonDto(entity.getId(), entity.getFirstName(), entity.getLastName());
+        return dto;
+    }
     protected Person convertToEntity(PersonDto dto) {
         //29-06-1963
         int year = Integer.parseInt(dto.getBirthDay().toString().substring(6,10));
