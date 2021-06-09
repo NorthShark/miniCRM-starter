@@ -2,12 +2,11 @@ package com.crm.miniCRM.controller;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.GregorianCalendar;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import com.crm.miniCRM.dto.PersonDto;
 import com.crm.miniCRM.model.Community;
+import com.crm.miniCRM.model.MemberPerson;
 import com.crm.miniCRM.model.Person;
 import com.crm.miniCRM.model.persistence.CommunityRepository;
 import com.crm.miniCRM.model.persistence.PersonRepository;
@@ -26,7 +25,8 @@ public class PersonController {
 
     private PersonRepository personService;
     private CommunityRepository communityService;
-private Community community;
+    private MemberPerson memberPerson;
+
     public PersonController(PersonRepository personService, CommunityRepository communityService) {
         this.personService = personService;
         this.communityService = communityService;
@@ -42,11 +42,16 @@ private Community community;
     }
     @GetMapping("/addcommunitymember/{id}")
     public String getmemberpersons(@PathVariable("id") long id, Model model) {
-        community = communityService.findById(id);
+        Community community = communityService.findById(id);
         Iterable<Person> persons = personService.findAll();
         List<PersonDto> personDtos = new ArrayList<>();
         persons.forEach(p -> personDtos.add(convertToNewMemberDto(p)));
+
+        List<Object> membernames = communityService.findMemberName(id);
+
         model.addAttribute("persons", personDtos);
+        model.addAttribute("commie", community);
+        model.addAttribute("membernames", membernames);
         return "new-community-member";
     }
     @GetMapping("/new")

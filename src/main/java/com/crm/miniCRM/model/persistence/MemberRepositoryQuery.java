@@ -2,8 +2,8 @@ package com.crm.miniCRM.model.persistence;
 
 import com.crm.miniCRM.model.Member;
 import com.crm.miniCRM.model.Person;
-import org.springframework.data.jpa.repository.Query;
 
+import java.util.List;
 import java.util.Optional;
 
 public class MemberRepositoryQuery implements MemberRepository {
@@ -18,6 +18,11 @@ public class MemberRepositoryQuery implements MemberRepository {
     @Override
     public Optional<Member> findById(MemberID id) {
         return Optional.empty();
+    }
+
+    @Override
+    public List<Object> ShowMemberName(Long id) {
+        return null;
     }
 
     @Override

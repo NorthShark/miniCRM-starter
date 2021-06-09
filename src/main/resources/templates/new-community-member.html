@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:class="http://www.w3.org/1999/xhtml">
 <head>
 
     <title>Add member to community</title>
@@ -8,28 +8,51 @@
 </head>
 <body>
 <div class="container">
-<div class="hero:unit">
-    <h2>Voeg members toe aan je community</h2>
-<table class="table col-md-6 ml-3">
-    <thead>
-    <tr>
-        <th>Id</th>
-        <th>First Name</th>
-        <th>Last Name</th>
-    </tr>
-    </thead>
-    <tbody>
-   <tr th:each="person : ${persons}">
-        <td th:text="${person.id}"></td>
-        <td th:text="${person.firstName}"></td>
-        <td th:text="${person.lastName}"></td>
-    </tr>
-    </tbody>
-</table>
-</div>
-<div th:name="explanation">
- <h1>test</h1>
-</div>
+    <div class="hero:unit">
+        <h3>Jouw community: </h3>
+        <div>
+            <label class="title">Jouw Community: </label>
+            <label class="description" th:text="${commie.ID}"></label>
+        </div>
+        <div>
+            <label>Beschrijving: </label>
+            <label th:text="${commie.description}"></label>
+        </div>
+        <div>
+            <table class="table col-md-6 ml-3">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Member First Name</th>
+                    <th>Member Last Name</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="Object : ${membernames}">
+                    <td th:text=""></td>
+                    <td th:text=""></td>
+                    <td th:text=""></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <table class="table col-md-6 ml-3">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="person : ${persons}">
+                <td th:text="${person.id}"></td>
+                <td th:text="${person.firstName}"></td>
+                <td th:text="${person.lastName}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
 </body>
 </html>
