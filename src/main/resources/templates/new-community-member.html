@@ -12,29 +12,31 @@
         <h3>Jouw community: </h3>
         <div>
             <label class="title">Jouw Community: </label>
-            <label class="description" th:text="${commie.ID}"></label>
+            <label class="description" th:text="${commie.ID}" style="display: inline"></label>
         </div>
         <div>
             <label>Beschrijving: </label>
-            <label th:text="${commie.description}"></label>
+            <label th:text="${commie.description}"style="display: inline"></label>
         </div>
+
         <div>
-            <table class="table col-md-6 ml-3">
+            <table>
                 <thead>
                 <tr>
-                    <th>Id</th>
-                    <th>Member First Name</th>
-                    <th>Member Last Name</th>
+                    <label>Members: </label>
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="membername : ${namesofmembers}">
-                    <td th:text="${membername[2]}"></td>
-                    <td th:text="${membername[1]}"></td>
-                    <td th:text="${membername[0]}"></td>
+                <tr th:each="membername : ${namesofmembers}" style="margin-bottom: 10px">
+                    <label th:text="${membername[1]}" style="margin-left: 5px"></label>
+                    <label th:text="${membername[0]}" style="display: inline; margin-left: 5px"></label>
+                    <label style="display: inline"> - </label>
                 </tr>
                 </tbody>
             </table>
+        </div>
+        <div>
+<p></p>
         </div>
         <table class="table col-md-6 ml-3">
             <thead>

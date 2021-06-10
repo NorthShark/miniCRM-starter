@@ -6,11 +6,43 @@
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
 <body>
-<div>
-    <h2>Dit zijn de members van uw community:</h2>
-    <h3>Dikke KAK! Het is me niet gelukt om de members van een welbepaalde community op te halen! GRRR!</h3>
-    <img th:alt="kak" th:src="@{images/monkey.jpg}" th:width="1000" th:height="200"/>
-
+<div class="all-classes-container">
+    <div id="container" style="white-space:nowrap">
+        <img th:alt="kak" src="/images/monkey.jpg" th:width="80" th:height="80" style="display:inline"/>
+        <h3 style=" color: cadetblue; margin:10px; display:inline">Dit zijn de members van uw community</h3>
+        <img th:alt="kak" src="/images/monkey.jpg" th:width="80" th:height="80" style="display:inline"/>
+    </div>
+    <div class="hero:unit">
+        <div style="margin-left: 10px; ">
+            <label class="title">Jouw Community: </label>
+            <label class="description" th:text="${commie.ID}"></label>
+        </div>
+        <div style="margin: 10px;  ">
+            <label>Beschrijving: </label>
+            <label th:text="${commie.description}"></label>
+        </div>
+        <div>
+            <table class="table col-md-6 ml-3">
+                <thead>
+                <tr>
+                    <th>Community Id</th>
+                    <th>Member First Name</th>
+                    <th>Member Last Name</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="membername : ${namesofmembers}">
+                    <td th:text="${membername[2]}"></td>
+                    <td th:text="${membername[1]}"></td>
+                    <td th:text="${membername[0]}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div>
+        <a th:href="@{/persons/addcommunitymember/{id}(id=${commie.ID})}" class="btn btn-primary" style="margin: 10px">Add member</a>
+    </div>
 </div>
 
 </body>

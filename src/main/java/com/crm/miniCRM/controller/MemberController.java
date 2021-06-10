@@ -28,6 +28,7 @@ public class MemberController {
         Iterable<Member> members = memberService.findAll();
         List<MemberDto> memberDtos = new ArrayList<>();
         members.forEach(m -> memberDtos.add(convertToDto(m)));
+
         model.addAttribute("members", memberDtos);
         return "members";
     }

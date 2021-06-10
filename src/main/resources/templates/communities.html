@@ -22,7 +22,7 @@
 			<tr th:each="community : ${communities}">
 				<td th:text="${community.id}"></td>
 				<td th:text="${community.description}"></td>
-				<td><a th:href="@{/communities/communitymembers}" class="btn btn-link">Show</a></td>
+				<td><a th:href="@{/communities/communitymembers/{id}(id=${community.id})}" class="btn btn-link">Show</a></td>
 				<td><a th:href="@{/persons/addcommunitymember/{id}(id=${community.id})}" class="btn btn-link">Add</a></td>
 			</tr>
 		</tbody>

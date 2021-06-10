@@ -1,7 +1,9 @@
 package com.crm.miniCRM.controller;
 
 import com.crm.miniCRM.dto.CommunityDto;
+import com.crm.miniCRM.dto.PersonDto;
 import com.crm.miniCRM.model.Community;
+import com.crm.miniCRM.model.Person;
 import com.crm.miniCRM.model.persistence.CommunityRepository;
 import com.crm.miniCRM.model.persistence.MemberRepository;
 import com.crm.miniCRM.model.persistence.PersonRepository;
@@ -60,8 +62,13 @@ public class CommunityController {
         return"communitymembers";
    }*/
 
-    @GetMapping("/communitymembers")
-    public String GetCommies(){
+    @GetMapping("/communitymembers/{id}")
+    public String GetCommies(@PathVariable("id") long id, Model model){
+            Community community = communityService.findById(id);
+            List<Object> membernames = communityService.findMemberName(id);
+            model.addAttribute("commie", community);
+            model.addAttribute("namesofmembers", membernames);
+
         return "communitymembers";
     }
 
