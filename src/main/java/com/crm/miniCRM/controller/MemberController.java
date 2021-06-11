@@ -27,6 +27,9 @@ public class MemberController {
     private MemberRepository memberService;
     private PersonRepository personService;
     private CommunityRepository communityService;
+    private Long personid;
+    private Long communityid;
+    private MemberID memberID = new MemberID(personid, communityid);
 
     public MemberController(MemberRepository memberService, PersonRepository personService, CommunityRepository communityService) {
         this.memberService = memberService;
@@ -48,23 +51,19 @@ public class MemberController {
         return "foert";
     }
 
-
-/*
-
     @GetMapping("/new")
     public String newmember(Model model) {
-        model.addAttribute("member", new MemberDto());
+        model.addAttribute("memberid", new MemberID());
+        model.addAttribute("member", new Member());
         return "new-member";
     }
 
     @PostMapping
-    public String addmember(MemberDto member) {
-        memberService.save(convertToEntity(member));
+    public String addmember(Member member) {
+        memberService.save(member);
 
         return "redirect:/members";
     }
-*/
-
 
     protected MemberDto convertToDto(Member entity) {
         MemberDto dto = new MemberDto(entity.getId(), entity.getSince(), entity.getUntil());
