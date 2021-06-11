@@ -196,15 +196,12 @@ public class MiniCrmApplication {
         memberRepository.save(new Member(new MemberID(1L, 1L), LocalDate.of(2003, 02, 01)));
         memberRepository.save(new Member(new MemberID(1L, 2L), LocalDate.of(2003, 02, 01)));
         memberRepository.save(new Member(new MemberID(1L, 3L), LocalDate.of(2003, 02, 01)));
-        memberRepository.save(new Member(new MemberID(1L, 4L), LocalDate.of(1999, 8, 01)));
 
         memberRepository.save(new Member(new MemberID(2L, 1L), LocalDate.of(2013, 02, 01)));
         memberRepository.save(new Member(new MemberID(2L, 3L), LocalDate.of(2000, 02, 01)));
-        memberRepository.save(new Member(new MemberID(2L, 4L), LocalDate.of(1999, 8, 01)));
 
         memberRepository.save(new Member(new MemberID(3L, 2L), LocalDate.of(2012, 02, 01)));
         memberRepository.save(new Member(new MemberID(3L, 3L), LocalDate.of(2005, 03, 01)));
-        memberRepository.save(new Member(new MemberID(3L, 4L), LocalDate.of(1990, 8, 01)));
 
         // fetch all Member
         log.info("Member found with findAll():");

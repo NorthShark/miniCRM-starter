@@ -8,16 +8,6 @@
 </head>
 <body>
 <div class="container">
-    <div class="hero:unit">
-        <h3>Jouw community: </h3>
-        <div>
-            <label class="title">Jouw Community: </label>
-            <label class="description" th:text="${commie.ID}" style="display: inline"></label>
-        </div>
-        <div>
-            <label>Beschrijving: </label>
-            <label th:text="${commie.description}"style="display: inline"></label>
-        </div>
 
         <div>
             <table>
@@ -35,25 +25,6 @@
                 </tbody>
             </table>
         </div>
-        <div>
-<p></p>
-        </div>
-        <table class="table col-md-6 ml-3">
-            <thead>
-            <tr>
-                <th>Id</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="person : ${persons}">
-                <td th:text="${person.id}"></td>
-                <td th:text="${person.firstName}"></td>
-                <td th:text="${person.lastName}"></td>
-            </tr>
-            </tbody>
-        </table>
     </div>
 </div>
 </body>

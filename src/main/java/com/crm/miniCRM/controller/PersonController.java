@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.crm.miniCRM.dto.PersonDto;
-import com.crm.miniCRM.model.Community;
-import com.crm.miniCRM.model.MemberPerson;
 import com.crm.miniCRM.model.Person;
 import com.crm.miniCRM.model.persistence.CommunityRepository;
 import com.crm.miniCRM.model.persistence.PersonRepository;
@@ -14,7 +12,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -24,12 +21,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class PersonController {
 
     private PersonRepository personService;
-    private CommunityRepository communityService;
-    private MemberPerson memberPerson;
 
-    public PersonController(PersonRepository personService, CommunityRepository communityService) {
+    public PersonController(PersonRepository personService) {
         this.personService = personService;
-        this.communityService = communityService;
     }
 
     @GetMapping
@@ -40,20 +34,7 @@ public class PersonController {
         model.addAttribute("persons", personDtos);
         return "persons";
     }
-    @GetMapping("/addcommunitymember/{id}")
-    public String getmemberpersons(@PathVariable("id") long id, Model model) {
-        Community community = communityService.findById(id);
-        Iterable<Person> persons = personService.findAll();
-        List<PersonDto> personDtos = new ArrayList<>();
-        persons.forEach(p -> personDtos.add(convertToNewMemberDto(p)));
 
-        List<Object> membernames = communityService.findMemberName(id);
-
-        model.addAttribute("persons", personDtos);
-        model.addAttribute("commie", community);
-        model.addAttribute("namesofmembers", membernames);
-        return "new-community-member";
-    }
     @GetMapping("/new")
     public String newperson(Model model) {
         model.addAttribute("person", new PersonDto());

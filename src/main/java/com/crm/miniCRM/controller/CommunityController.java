@@ -1,10 +1,13 @@
 package com.crm.miniCRM.controller;
 
 import com.crm.miniCRM.dto.CommunityDto;
+import com.crm.miniCRM.dto.MemberDto;
 import com.crm.miniCRM.dto.PersonDto;
 import com.crm.miniCRM.model.Community;
+import com.crm.miniCRM.model.Member;
 import com.crm.miniCRM.model.Person;
 import com.crm.miniCRM.model.persistence.CommunityRepository;
+import com.crm.miniCRM.model.persistence.MemberID;
 import com.crm.miniCRM.model.persistence.MemberRepository;
 import com.crm.miniCRM.model.persistence.PersonRepository;
 import org.springframework.stereotype.Controller;
@@ -23,14 +26,13 @@ import java.util.List;
 @Controller
 @RequestMapping(value = "/communities")
 public class CommunityController {
-    private MemberController memberController;
-    private PersonController personController;
-    private PersonRepository personService;
-    private MemberRepository memberService;
-    private CommunityRepository communityService;
 
-    public CommunityController(CommunityRepository communityService) {
+    private CommunityRepository communityService;
+    private PersonRepository personService;
+
+    public CommunityController(CommunityRepository communityService, PersonRepository personService) {
         this.communityService = communityService;
+        this.personService = personService;
     }
 
     @GetMapping
@@ -42,26 +44,6 @@ public class CommunityController {
         return "communities";
     }
 
-/*    @GetMapping("/addcommunitymember")
-    public CommunityDto getcommunitybyid(@PathVariable("id") long id, Model model) {
-        Community community = communityService.findById(id);
-        CommunityDto dto = new CommunityDto();
-        convertToDto(community);
-        model.addAttribute("community",dto);
-        return dto;
-    }*/
-
-
-        /*  WERKT VOORLOPIG NIET
-    @GetMapping("/communitymembers")
-    public String getMembersOfCommunity(Model model, @PathVariable long communityId){
-        Iterable<Member> membersOfCommunity = communityService.findAllByCommunityID(communityId);
-        List<MemberDto> memberDtos = new ArrayList<>();
-        membersOfCommunity.forEach(m->memberDtos.add(memberController.convertToDto(m)));
-        model.addAttribute("communitymembers", memberDtos);
-        return"communitymembers";
-   }*/
-
     @GetMapping("/communitymembers/{id}")
     public String GetCommies(@PathVariable("id") long id, Model model){
             Community community = communityService.findById(id);
@@ -71,7 +53,18 @@ public class CommunityController {
 
         return "communitymembers";
     }
+    @GetMapping("/addcommunitymember/{id}")
+    public String getmemberpersons(@PathVariable("id") long id, Model model) {
+        Community community = communityService.findById(id);
+        Iterable<Person> persons = personService.findAll();
+        List<Object> membernames = communityService.findMemberName(id);
 
+        model.addAttribute("commie", community);
+        model.addAttribute("namesofmembers", membernames);
+        model.addAttribute("persons", persons);
+
+        return "new-community-member";
+    }
     @GetMapping("/new")
     public String newcommunity(Model model) {
         model.addAttribute("community", new CommunityDto());
@@ -85,17 +78,6 @@ public class CommunityController {
         return "redirect:/communities";
     }
 
-/*    @GetMapping("/addcommunitymember")
-    public String newcommunitymember(){
-        return "redirect:/new-community-member";
-   // return "new-community-member";
-    }*/
-
-  /*  @PostMapping
-    public String addcommunitymember(*//*nog invullen*//*) {
-        //hier code schrijven
-        return "redirect:/communities";
-    }*/
     protected CommunityDto convertToDto(Community entity) {
         CommunityDto dto = new CommunityDto(entity.getID(), entity.getDescription());
          return dto;
