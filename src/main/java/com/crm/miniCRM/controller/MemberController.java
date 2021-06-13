@@ -1,22 +1,15 @@
 package com.crm.miniCRM.controller;
 
 import com.crm.miniCRM.dto.MemberDto;
-import com.crm.miniCRM.dto.PersonDto;
-import com.crm.miniCRM.model.Community;
 import com.crm.miniCRM.model.Member;
-import com.crm.miniCRM.model.Person;
 import com.crm.miniCRM.model.persistence.CommunityRepository;
 import com.crm.miniCRM.model.persistence.MemberID;
 import com.crm.miniCRM.model.persistence.MemberRepository;
 import com.crm.miniCRM.model.persistence.PersonRepository;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,25 +41,24 @@ public class MemberController {
 
     @GetMapping("/foert")
     public String foert(){
-        return "foert";
+        return "error";
     }
 
     @GetMapping("/new")
     public String newmember(Model model) {
-        model.addAttribute("memberid", new MemberID());
-        model.addAttribute("member", new Member());
+        model.addAttribute("member", new MemberDto());
         return "new-member";
     }
 
     @PostMapping
-    public String addmember(Member member) {
-        memberService.save(member);
+    public String addmember(@RequestParam(name="person_ID") Long person_ID, @RequestParam(name="community_ID") Long communityID, MemberDto member) {
+        memberService.save(convertToEntity(member));
 
         return "redirect:/members";
     }
 
     protected MemberDto convertToDto(Member entity) {
-        MemberDto dto = new MemberDto(entity.getId(), entity.getSince(), entity.getUntil());
+        MemberDto dto = new MemberDto(entity.getSince(), entity.getUntil(), entity.getId().getPerson_ID(), entity.getId().getCommunity_ID());
         return dto;
     }
 

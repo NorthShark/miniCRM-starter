@@ -7,6 +7,8 @@ import java.time.LocalDate;
 public class MemberDto {
 
     private MemberID Id;
+    private Long person_ID;
+    private Long community_ID;
     private LocalDate since;
     private LocalDate until;
 
@@ -36,8 +38,24 @@ public class MemberDto {
         this.until = until;
     }
 
-    public MemberDto(MemberID id, LocalDate since, LocalDate until) {
-        Id = id;
+    public Long getPerson_ID() {
+        return person_ID;
+    }
+
+    public void setPerson_ID(Long person_ID) {
+        this.person_ID = person_ID;
+    }
+
+    public Long getCommunity_ID() {
+        return community_ID;
+    }
+
+    public void setCommunity_ID(Long community_ID) {
+        this.community_ID = community_ID;
+    }
+
+    public MemberDto(LocalDate since, LocalDate until, Long person_ID, Long community_ID) {
+        this.Id = new MemberID(person_ID, community_ID);
         this.since = since;
         this.until = until;
     }

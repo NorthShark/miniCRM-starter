@@ -2,45 +2,48 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 
-  <title>New member</title>
-  <link rel="stylesheet"
-        href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <title>New member</title>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
 <body>
-<div>
-  <h4 style="margin: 10px 0px 10px">Maak nieuw member voor deze community aan: </h4>
+<div class="container ml-3 mt-4">
 
-  <div class="container ml-3 mt-4">
+    <h4 style="margin: 10px 0px 10px">Maak nieuw member voor deze community aan: </h4>
+
     <form th:action="@{/members}" th:object="${member}" method="post"
           class="mt-4">
+
         <div class="form-group row">
-          <label for="community_id" col-form-label col-sm-2>Community Id</label>
-          <input type="text" th:field="*{id.community_ID}" id="community_id"
-                 class="form-control col-sm-6 ml-2" placeholder="community id"/>
+            <label for="person_ID" col-form-label col-sm-2>Person Id</label>
+            <input type="text" th:name="person_ID" th:field="*{id.person_ID}" id="person_ID"
+                   class="form-control col-sm-6 ml-2" placeholder="person id"/>
         </div>
         <div class="form-group row">
-          <label for="person_id" col-form-label col-sm-2>Person Id</label>
-          <input type="text" th:field="*{id.person_ID}" id="person_id"
-                 class="form-control col-sm-6 ml-2" placeholder="person id"/>
+            <label for="community_ID" col-form-label col-sm-2>Community Id</label>
+            <input type="text" th:name="community_ID" th:field="*{id.community_ID}" id="community_ID"
+                   class="form-control col-sm-6 ml-2" placeholder="community id"/>
         </div>
         <div class="form-group row">
-          <label for="since" col-form-label col-sm-2>Member since</label>
-          <input type="date" th:field="*{since}" id="since"
-                 class="form-control col-sm-6 ml-2" placeholder="dd-mm-yyyy"/>
+            <label for="since" col-form-label col-sm-2>Member since</label>
+            <input type="date" th:field="*{since}" id="since"
+                   class="form-control col-sm-6 ml-2" placeholder="dd-mm-yyyy"/>
         </div>
         <div class="form-group row">
-          <label for="until" col-form-label col-sm-2>Member until</label>
-          <input type="date" th:field="*{until}" id="until"
-                 class="form-control col-sm-6 ml-2" placeholder="dd-mm-yyyy"/>
+            <label for="until" col-form-label col-sm-2>Member until</label>
+            <input type="date" th:field="*{until}" id="until"
+                   class="form-control col-sm-6 ml-2" placeholder="dd-mm-yyyy"/>
         </div>
-      </form>
-      <input type="submit" value="Save member"
-             class="btn btn-primary ml-2">
-      <label>klikt er niet op want het werkt toch niet</label>
-      <label>ga liever naar:     <a th:href="@{/}" class="btn btn-link">Home</a>
-      </label>
+        <div>
+            <input type="submit" value="Save member"
+                   class="btn btn-primary ml-2">
+        </div>
     </form>
-  </div>
+    <label>klikt er niet op want het werkt toch niet al is mijn code toch goed? </label>
+    <label>ga liever naar: <a th:href="@{/}" class="btn btn-link">Home</a>
+    </label>
+
+
 </div>
 </body>
 </html>

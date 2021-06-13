@@ -6,6 +6,7 @@ import com.crm.miniCRM.model.Event;
 import com.crm.miniCRM.model.persistence.EventRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -45,7 +46,13 @@ public class EventController {
         return dto;
     }
     protected Event convertToEntity(EventDto dto){
+        int year = Integer.parseInt(dto.getDate().toString().substring(6,10));
+        int month = Integer.parseInt(dto.getDate().toString().substring(3,5));
+        int day = Integer.parseInt(dto.getDate().toString().substring(0,2));
         Event event = new Event(dto.getDescription(),dto.getDate());
+        if (!StringUtils.isEmpty(dto.getId())) {
+            event.setId(dto.getId());
+        }
         return event;
     }
     }
